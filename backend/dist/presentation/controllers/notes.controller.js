@@ -16,19 +16,32 @@ exports.NotesController = void 0;
 const common_1 = require("@nestjs/common");
 const note_service_1 = require("../../application/services/note.service");
 const create_note_dto_1 = require("../../dto/create-note.dto");
+const get_note_dto_1 = require("../../dto/get-note.dto");
 let NotesController = class NotesController {
     noteService;
     constructor(noteService) {
         this.noteService = noteService;
     }
     async getNotes() {
-        return this.noteService.getNotes();
+        const notes = await this.noteService.getNotes();
+        return notes.map((note) => new get_note_dto_1.GetNoteDto({
+            id: note.id,
+            title: note.title,
+            content: note.content,
+            createdAt: note.createdAt,
+        }));
     }
     async getNoteById(id) {
         return this.noteService.getNoteById(Number(id));
     }
     async createNote(createNoteDto) {
-        return this.noteService.createNote(createNoteDto.content);
+        const note = await this.noteService.createNote(createNoteDto.title, createNoteDto.content);
+        return new get_note_dto_1.GetNoteDto({
+            id: note.id,
+            title: note.title,
+            content: note.content,
+            createdAt: note.createdAt,
+        });
     }
     async deleteNote(id) {
         return this.noteService.deleteNote(Number(id));

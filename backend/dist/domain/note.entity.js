@@ -13,9 +13,11 @@ exports.Note = void 0;
 const core_1 = require("@mikro-orm/core");
 let Note = class Note {
     id;
+    title;
     content;
     createdAt = new Date();
-    constructor(content) {
+    constructor(title, content) {
+        this.title = title;
         this.content = content;
     }
 };
@@ -27,6 +29,10 @@ __decorate([
 __decorate([
     (0, core_1.Property)(),
     __metadata("design:type", String)
+], Note.prototype, "title", void 0);
+__decorate([
+    (0, core_1.Property)(),
+    __metadata("design:type", String)
 ], Note.prototype, "content", void 0);
 __decorate([
     (0, core_1.Property)({ onCreate: () => new Date() }),
@@ -34,6 +40,6 @@ __decorate([
 ], Note.prototype, "createdAt", void 0);
 exports.Note = Note = __decorate([
     (0, core_1.Entity)(),
-    __metadata("design:paramtypes", [String])
+    __metadata("design:paramtypes", [String, String])
 ], Note);
 //# sourceMappingURL=note.entity.js.map

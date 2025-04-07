@@ -48,8 +48,8 @@ let NoteService = class NoteService {
         }
         return note;
     }
-    async createNote(content) {
-        const note = new note_entity_1.Note(content);
+    async createNote(title, content) {
+        const note = new note_entity_1.Note(title, content);
         const savedNote = await this.noteRepository.create(note);
         await this.cacheManager.del(this.cacheKey);
         return savedNote;

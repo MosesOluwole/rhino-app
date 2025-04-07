@@ -10,6 +10,6 @@ export declare class NoteService {
     constructor(noteRepository: NoteRepository, redisService: RedisService, cacheManager: Cache);
     getNotes(): Promise<Note[]>;
     getNoteById(id: number): Promise<Note | null>;
-    createNote(content: string): Promise<Note>;
+    createNote(title: string, content: string): Promise<Note>;
     deleteNote(id: number): Promise<void>;
 }

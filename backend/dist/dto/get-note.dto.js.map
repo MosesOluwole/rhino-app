@@ -1,0 +1,1 @@
+{"version":3,"file":"get-note.dto.js","sourceRoot":"","sources":["../../src/dto/get-note.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,UAAU;IACrB,EAAE,CAAS;IACX,KAAK,CAAS;IACd,OAAO,CAAS;IAChB,SAAS,CAAO;IAEhB,YAAY,OAA4B;QACtC,MAAM,CAAC,MAAM,CAAC,IAAI,EAAE,OAAO,CAAC,CAAC;IAC/B,CAAC;CACF;AATD,gCASC"}
