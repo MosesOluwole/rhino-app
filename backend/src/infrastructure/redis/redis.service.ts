@@ -7,7 +7,6 @@ export class RedisService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   async get<T>(key: string): Promise<T | null> {
-    console.log('Cache Get');
     return this.cacheManager.get<T>(key);
   }
   async set<T>(key: string, value: T, ttl?: number): Promise<void> {

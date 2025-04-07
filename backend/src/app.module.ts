@@ -1,4 +1,3 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -20,7 +19,7 @@ import * as redisStore from 'cache-manager-ioredis';
         store: redisStore,
         host: configService.get('REDIS_HOST') || 'localhost',
         port: configService.get<number>('REDIS_PORT'),
-        ttl: 6000,
+        ttl: 60,
       }),
       isGlobal: true,
     }),
