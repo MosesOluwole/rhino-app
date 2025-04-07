@@ -3,12 +3,16 @@ import {
   Inject,
   NotFoundException,
   InternalServerErrorException,
+  BadRequestException,
 } from '@nestjs/common';
 import { Note } from '../../domain/note.entity';
 import { NoteRepository } from '../../infrastructure/repository/note.repository';
 import { RedisService } from '../../infrastructure/redis/redis.service';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+
+const MAX_TITLE_LENGTH = 100;
+const MAX_CONTENT_LENGTH = 250;
 
 @Injectable()
 export class NoteService {
@@ -61,12 +65,28 @@ export class NoteService {
   }
 
   async createNote(title: string, content: string): Promise<Note> {
+    // Validate inputs: title and content must be provided and within allowed lengths.
+    if (!title?.trim() || !content?.trim()) {
+      throw new BadRequestException('Title and content are required.');
+    }
+    if (title.trim().length > MAX_TITLE_LENGTH) {
+      throw new BadRequestException(
+        `Title cannot exceed ${MAX_TITLE_LENGTH} characters.`,
+      );
+    }
+    if (content.trim().length > MAX_CONTENT_LENGTH) {
+      throw new BadRequestException(
+        `Content cannot exceed ${MAX_CONTENT_LENGTH} characters.`,
+      );
+    }
     try {
-      const newNote = new Note(title, content);
+      const newNote = new Note(title.trim(), content.trim());
       const savedNote = await this.noteRepository.create(newNote);
+      // Invalidate the cache so that subsequent requests get the updated list
       await this.cacheManager.del(this.cacheKey);
       return savedNote;
-    } catch {
+    } catch (error) {
+      console.error('Error creating note:', error);
       throw new InternalServerErrorException('Failed to create note.');
     }
   }
