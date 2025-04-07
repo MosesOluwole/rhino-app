@@ -3,7 +3,7 @@
 ## Building and Running the App with Docker
 
 Open a Terminal:
-Navigate to the root folder of your project (the folder containing docker-compose.yml).
+Navigate to the root folder of the project (the folder containing docker-compose.yml).
 
 ## Build and Start All Services
 
