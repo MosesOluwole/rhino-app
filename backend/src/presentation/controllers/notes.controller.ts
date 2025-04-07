@@ -2,7 +2,7 @@ import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { NoteService } from '../../application/services/note.service';
 import { Note } from '../../domain/note.entity';
 import { CreateNoteDto } from '../../dto/create-note.dto';
-import { GetNoteDto } from 'src/dto/get-note.dto';
+import { GetNoteDto } from '../../dto/get-note.dto';
 
 @Controller('notes')
 export class NotesController {

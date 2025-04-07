@@ -20,9 +20,9 @@ import * as redisStore from 'cache-manager-ioredis';
         store: redisStore,
         host: configService.get('REDIS_HOST') || 'localhost',
         port: configService.get<number>('REDIS_PORT'),
-        ttl: 60, // TTL in seconds
+        ttl: 6000,
       }),
-      isGlobal: true, // Makes the cache available in all modules without re-importing
+      isGlobal: true,
     }),
     NotesModule,
   ],
