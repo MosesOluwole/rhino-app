@@ -44,5 +44,5 @@ $ npx mikro-orm migration:create --config src/infrastructure/orm/orm.config.ts
 ```
 
 ```bash
-npx mikro-orm migration:up --config src/infrastructure/orm/orm.config.ts
+$ npx mikro-orm migration:up --config src/infrastructure/orm/orm.config.ts
 ```
