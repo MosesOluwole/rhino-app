@@ -7,6 +7,13 @@ Navigate to the root folder of the project (the folder containing docker-compose
 
 ## Build and Start All Services
 
+Git Clone the repo
+
+```bash
+$ git clone https://github.com/MosesOluwole/rhino-app.git
+```
+
+
 Run the following command:
 
 ```bash
